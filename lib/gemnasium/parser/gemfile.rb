@@ -46,10 +46,10 @@ module Gemnasium
           return nil if exclude?(match, opts)
           clean!(match, opts)
           name, reqs = match["name"], [match["req1"], match["req2"]].compact
-          Bundler::Dependency.new(name, reqs, opts).tap do |dep|
+          [Bundler::Dependency.new(name, reqs, opts).tap do |dep|
             line = content.slice(0, match.begin(0)).count("\n") + 1
             dep.instance_variable_set(:@line, line)
-          end
+          end, opts]
         end
 
         def groups(match)
@@ -66,7 +66,7 @@ module Gemnasium
         end
 
         def exclude?(match, opts)
-          git?(match, opts) || github?(match, opts) || path?(match, opts)
+          path?(match, opts)
         end
 
         def git?(match, opts)
