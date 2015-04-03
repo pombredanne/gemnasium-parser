@@ -2,10 +2,10 @@
 
 Gem::Specification.new do |gem|
   gem.name    = "gemnasium-parser"
-  gem.version = "0.1.9"
+  gem.version = "0.1.10"
 
-  gem.authors     = "Steve Richert"
-  gem.email       = "steve.richert@gmail.com"
+  gem.authors     = "Erik Nilsen"
+  gem.email       = "enilsen16@live.com"
   gem.description = "Safely parse Gemfiles and gemspecs"
   gem.summary     = gem.description
   gem.homepage    = "https://github.com/gemnasium/gemnasium-parser"
