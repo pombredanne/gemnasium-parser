@@ -43,13 +43,12 @@ module Gemnasium
 
         def dependency(match)
           opts = Patterns.options(match["opts"])
-          return nil if exclude?(match, opts)
           clean!(match, opts)
           name, reqs = match["name"], [match["req1"], match["req2"]].compact
-          [Bundler::Dependency.new(name, reqs, opts).tap do |dep|
+          Bundler::Dependency.new(name, reqs, opts).tap do |dep|
             line = content.slice(0, match.begin(0)).count("\n") + 1
             dep.instance_variable_set(:@line, line)
-          end, opts]
+          end
         end
 
         def groups(match)
@@ -63,10 +62,6 @@ module Gemnasium
 
         def group_matches
           @group_matches ||= matches(Patterns::GROUP_CALL)
-        end
-
-        def exclude?(match, opts)
-          path?(match, opts)
         end
 
         def git?(match, opts)

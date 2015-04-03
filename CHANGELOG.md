@@ -10,10 +10,10 @@ Bugfixes:
 
 * support :github option and exclude gems that use it
 * add CHANGELOG
-  
+
 ## 0.1.7 2012-10-17
 
 Bugfixes:
 
-* fix pattern to allow gem's name with a period
-
+* fix pattern to allow gem's
+ with a period
