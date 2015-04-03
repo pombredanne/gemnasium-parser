@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 Gem::Specification.new do |gem|
-  gem.name    = "gemnasium-parser-improved"
+  gem.name    = "gemnasium-parser"
   gem.version = "0.1.10"
 
   gem.authors     = "Erik Nilsen"
