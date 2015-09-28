@@ -23,6 +23,7 @@ module Gemnasium
       COMMENT = /(#[^\n]*)?/
 
       GEM_CALL = /^[ \t]*gem\(?[ \t]*#{QUOTED_GEM_NAME}(?:[ \t]*,[ \t]*#{REQUIREMENT_LIST})?(?:[ \t]*,[ \t]*(?<opts>#{OPTIONS}))?[ \t]*\)?[ \t]*#{COMMENT}$/
+      POD_CALL = /^[ \t]*pod\(?[ \t]*#{QUOTED_GEM_NAME}(?:[ \t]*,[ \t]*#{REQUIREMENT_LIST})?(?:[ \t]*,[ \t]*(?<opts>#{OPTIONS}))?[ \t]*\)?[ \t]*#{COMMENT}$/
 
       SYMBOLS = /#{SYMBOL}([ \t]*,[ \t]*#{SYMBOL})*/
       GROUP_CALL = /^(?<i1>[ \t]*)group\(?[ \t]*(?<grps>#{SYMBOLS})[ \t]*\)?[ \t]+do[ \t]*?\n(?<blk>.*?)\n^\k<i1>end[ \t]*$/m
