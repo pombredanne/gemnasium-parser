@@ -191,17 +191,17 @@ describe Gemnasium::Parser::Gemfile do
 
   it "ignores gems with a git option" do
     content(%(gem "rails", :git => "https://github.com/rails/rails.git"))
-    dependencies.size.should == 0
+    dependencies.size.should == 1
   end
 
   it "ignores gems with a github option" do
     content(%(gem "rails", :github => "rails/rails"))
-    dependencies.size.should == 0
+    dependencies.size.should == 1
   end
 
   it "ignores gems with a path option" do
     content(%(gem "rails", :path => "vendor/rails"))
-    dependencies.size.should == 0
+    dependencies.size.should == 1
   end
 
   it "ignores gems in a git block" do
@@ -210,7 +210,7 @@ describe Gemnasium::Parser::Gemfile do
         gem "rails"
       end
     EOF
-    dependencies.size.should == 0
+    dependencies.size.should == 1
   end
 
   it "ignores gems in a git block with parentheses" do
@@ -219,7 +219,7 @@ describe Gemnasium::Parser::Gemfile do
         gem "rails"
       end
     EOF
-    dependencies.size.should == 0
+    dependencies.size.should == 1
   end
 
   it "ignores gems in a path block" do
@@ -228,7 +228,7 @@ describe Gemnasium::Parser::Gemfile do
         gem "rails"
       end
     EOF
-    dependencies.size.should == 0
+    dependencies.size.should == 1
   end
 
   it "ignores gems in a path block with parentheses" do
@@ -237,7 +237,7 @@ describe Gemnasium::Parser::Gemfile do
         gem "rails"
       end
     EOF
-    dependencies.size.should == 0
+    dependencies.size.should == 1
   end
 
   it "records dependency line numbers" do
