@@ -128,12 +128,14 @@ describe Gemnasium::Parser::Podspec do
 
   it "parses parentheses" do
     content(<<-EOF)
-      Pod::Spec.new do |spec|
-        spec.dependency("rake", ">= 0.8.7")
+    Pod::Spec.new do |s|
+      s.subspec 'Default' do |ss|
+        ss.dependency 'CocoaLumberjack/Core', '>= 1.0.0'
       end
+    end
     EOF
-    dependency.name.should == "rake"
-    dependency.requirement.as_list.should == [">= 0.8.7"]
+    dependency.name.should == "CocoaLumberjack"
+    dependency.requirement.as_list.should == [">= 1.0.0"]
   end
 
   it "parses pods followed by inline comments" do
