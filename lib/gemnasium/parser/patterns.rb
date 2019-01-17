@@ -4,6 +4,8 @@ module Gemnasium
       GEM_NAME = /[a-zA-Z0-9\-_\.]+/
       QUOTED_GEM_NAME = /(?:(?<gq>["'])(?<name>#{GEM_NAME})\k<gq>|%q<(?<name>#{GEM_NAME})>)/
 
+      QUOTED_POD_NAME = /(?:(?<gq>["'])(?<name>#{GEM_NAME})(\/[a-zA-Z0-9\-_\.]+)?\k<gq>|%q<(?<name>#{GEM_NAME})(\/[a-zA-Z0-9\-_\.]+)?>)/
+
       MATCHER = /(?:=|!=|>|<|>=|<=|~>)/
       VERSION = /[0-9]+(?:\.[a-zA-Z0-9]+)*/
       REQUIREMENT = /[ \t]*(?:#{MATCHER}[ \t]*)?#{VERSION}[ \t]*/
@@ -23,6 +25,7 @@ module Gemnasium
       COMMENT = /(#[^\n]*)?/
 
       GEM_CALL = /^[ \t]*gem\(?[ \t]*#{QUOTED_GEM_NAME}(?:[ \t]*,[ \t]*#{REQUIREMENT_LIST})?(?:[ \t]*,[ \t]*(?<opts>#{OPTIONS}))?[ \t]*\)?[ \t]*#{COMMENT}$/
+      POD_CALL = /^[ \t]*pod\(?[ \t]*#{QUOTED_GEM_NAME}(?:[ \t]*,[ \t]*#{REQUIREMENT_LIST})?(?:[ \t]*,[ \t]*(?<opts>#{OPTIONS}))?[ \t]*\)?[ \t]*#{COMMENT}$/
 
       SYMBOLS = /#{SYMBOL}([ \t]*,[ \t]*#{SYMBOL})*/
       GROUP_CALL = /^(?<i1>[ \t]*)group\(?[ \t]*(?<grps>#{SYMBOLS})[ \t]*\)?[ \t]+do[ \t]*?\n(?<blk>.*?)\n^\k<i1>end[ \t]*$/m
@@ -34,6 +37,7 @@ module Gemnasium
       GEMSPEC_CALL = /^[ \t]*gemspec(?:\(?[ \t]*(?<opts>#{OPTIONS}))?[ \t]*\)?[ \t]*$/
 
       ADD_DEPENDENCY_CALL = /^[ \t]*\w+\.add(?<type>_runtime|_development)?_dependency\(?[ \t]*#{QUOTED_GEM_NAME}(?:[ \t]*,[ \t]*#{REQUIREMENTS})?[ \t]*\)?[ \t]*#{COMMENT}$/
+      ADD_POD_DEPENDENCY_CALL = /^[ \t]*\w+\.dependency\(?[ \t]*#{QUOTED_POD_NAME}(?:[ \t]*,[ \t]*#{REQUIREMENTS})?[ \t]*\)?[ \t]*#{COMMENT}$/
 
       def self.options(string)
         {}.tap do |hash|
